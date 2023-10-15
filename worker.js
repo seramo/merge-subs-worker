@@ -21,6 +21,16 @@ async function handleRequest(request) {
         // Other
         'https://zebelkhan10.fallahpour25.workers.dev/sub/74f829f3-480b-4e7f-8039-9418d055375b',
         'https://tackserver-code.ir/api/json/VpnMaan.json',
+        'https://raw.githubusercontent.com/yaney01/telegram-collector/main/subscribe/networks/grpc',
+        'https://raw.githubusercontent.com/yaney01/telegram-collector/main/subscribe/networks/http',
+        'https://raw.githubusercontent.com/yaney01/telegram-collector/main/subscribe/networks/ws',
+        'https://raw.githubusercontent.com/yaney01/telegram-collector/main/subscribe/networks/tcp',
+        'https://raw.githubusercontent.com/yaney01/telegram-collector/main/subscribe/security/tls',
+        // MahdiBland
+        'https://raw.githubusercontent.com/yaney01/telegram-collector/main/subscribe/layers/ipv6',
+        // Other
+        'https://raw.githubusercontent.com/yaney01/telegram-collector/main/subscribe/security/non-tls',
+        'https://raw.githubusercontent.com/yaney01/telegram-collector/main/subscribe/layers/ipv4',
         // Add more URLs as needed
     ];
 
