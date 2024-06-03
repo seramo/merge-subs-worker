@@ -23,7 +23,14 @@ async function handleRequest(request) {
         subscriptionUrls.map(async (url) => {
             const response = await fetch(url);
             if (response.status === 200) {
-                return response.text();
+                const text = await response.text();
+                // Check if the content is a valid base64 encoded string and decode it
+                if (isBase64(text)) {
+                    const decodedText = atob(text);
+                    return decodedText;
+                }
+                // If not base64, return the text as is
+                return text;
             }
             return null; // Ignore failed requests
         })
@@ -36,4 +43,13 @@ async function handleRequest(request) {
     return new Response(mergedData, {
         status: 200,
     });
+}
+
+// Helper function to check if a string is a valid base64 encoded string
+function isBase64(str) {
+    try {
+        return btoa(atob(str)) === str;
+    } catch (e) {
+        return false;
+    }
 }
