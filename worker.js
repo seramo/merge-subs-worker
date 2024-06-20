@@ -18,6 +18,12 @@ async function handleRequest(request) {
         // Add more URLs as needed
     ];
 
+    // Define an array of configs
+    const staticConfigs = [
+        '',
+        // Add more configs as needed
+    ];
+
     // Fetch data from all URLs concurrently and store in an array
     const validResponses = await Promise.all(
         subscriptionUrls.map(async (url) => {
@@ -36,8 +42,11 @@ async function handleRequest(request) {
         })
     );
 
-    // Filter out null values (failed requests) and merge the responses
-    const mergedData = validResponses.filter(Boolean).join('\r\n');
+    // Filter out null values (failed requests)
+    const filteredData = validResponses.filter(Boolean);
+
+    // Merge the subscriptions data and static configs
+    const mergedData = filteredData.concat(staticConfigs).join('\r\n');
 
     // Create a response with the merged data
     return new Response(mergedData, {
