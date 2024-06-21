@@ -48,8 +48,11 @@ async function handleRequest(request) {
     // Merge the subscriptions data and static configs
     const mergedData = filteredData.concat(staticConfigs).join('\r\n');
 
+    // Encode the merged data to base64
+    const base64Data = encodeBase64(mergedData);
+
     // Create a response with the merged data
-    return new Response(mergedData, {
+    return new Response(base64Data, {
         status: 200,
     });
 }
@@ -61,4 +64,11 @@ function isBase64(str) {
     } catch (e) {
         return false;
     }
+}
+
+// Encodes a given string into base64 format, handling UTF-8 content correctly.
+function encodeBase64(str) {
+    // Encode a string into UTF-8, then base64
+    const utf8Bytes = new TextEncoder().encode(str);
+    return btoa(String.fromCharCode(...utf8Bytes));
 }
