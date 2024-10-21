@@ -68,7 +68,10 @@ function isBase64(str) {
 
 // Encodes a given string into base64 format, handling UTF-8 content correctly.
 function encodeBase64(str) {
-    // Encode a string into UTF-8, then base64
     const utf8Bytes = new TextEncoder().encode(str);
-    return btoa(String.fromCharCode(...utf8Bytes));
+    let binaryStr = '';
+    for (let i = 0; i < utf8Bytes.length; i++) {
+        binaryStr += String.fromCharCode(utf8Bytes[i]);
+    }
+    return btoa(binaryStr);
 }
